@@ -33,7 +33,7 @@ def replace(word,alpha):
       _list.append(''.join(mute_word))
   return _list
 
-#Given a position and the word, swaps the charaters at position and the next positions
+#Given a position and the word, swaps the charaters at position and the next position
 def swap(word,pos):
   word=list(word)
   word[pos],word[pos+1]=word[pos+1],word[pos]
