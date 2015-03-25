@@ -45,7 +45,9 @@ def swap_adj(word):
   _list=[swap(word,pos) for pos in range(len(word)-1)]
   return _list
   
-#mutates the word (insert with [a-z],delete a character,replace with [a-z],swap adjacent chars)
+#Creates a list of mutations of the word 
+#inserting a character from [a-z] at each position ,deleting a character,
+#replacing a character with [a-z],swap adjacent chars)
 def mutate(word):
   mute_list=[]
   alpha=string.lowercase
