@@ -44,66 +44,35 @@ import sys
 # You could write a helper utility function that reads a file
 # and builds and returns a word/count dict for it.
 # Then print_words() and print_top() can just call the utility function.
-#returns sorted list of (word,count) tuples
 
+
+#Accepts a dict with key words sorted and counts as valuse and returns sorted list of (word,count) tuples
 def sortlist(di):
-  #print "\n\n printing the dict\n"
-  #print di
   dictlst = di.items()
-  #print "\n\n printing the list\n"
-  #print dictlst
   dictlst.sort()
-  #print "\n\n printing the sorted list\n"
-  #print dictlst
   return dictlst
-  
+#  
 def srtdlst(fname):
   fhandle=open(fname,'rU')
   filestring = fhandle.read().lower()
-  #print filestring
   wordlist = filestring.split()
-  wordlist = sorted(wordlist)
-  #print wordlist
-  
   dictf = {}
-  
   for w in wordlist:
     cnt=0
-    # To avoid repeated counting of a word
-    if w in dictf: continue 
-    
+    if w in dictf: continue # To avoid repeated counting of a word
     for wrd in wordlist:
       if w == wrd :
         cnt += 1
     dictf[w] = cnt
-  print '\n'
-  #print dictf  
   return sortlist(dictf)
-  """
-  dictf = dictf.items()
-  print sorted(dictf)
-  return dictf
-      
-  print "\n\n printing the dict\n"
-  print dictf
-  dictflst = dictf.items()
-  print "\n\n printing the list\n"
-  print dictflst
-  dictflst.sort()
-  print "\n\n printing the sorted list\n"
-  print dictflst
-  return dictflst
-  """  
-###
+
 def getkey(tup):
   return tup[1]
 
 def myprint(lst,flag):
   if flag=="count":
     print "\n The Answer \n"
-    #print lst
     for tup in lst:
-      #print "(%s %d) " % (tup[0],tup[1]),      #to print without the newline and hence the whole result for large files
       print "\n %s   %d" % tup
   if flag=="topcount":
     print "\n The Answer Topcount \n"
@@ -112,18 +81,17 @@ def myprint(lst,flag):
       del lst[20:]
     for tup in lst:
       print "\n %s   %d" % tup
-    #print lst
-    
+   
 ###
 def print_words(fname):
   flag = "count"
-  print '  printing words!  '
+  #print '  printing words!  '
   lst=srtdlst(fname)
   myprint(lst,flag)
 ###  
 def print_top(fname):
   flag = "topcount"
-  print '  printing topwords!  '
+  #print '  printing topwords!  '
   lst=srtdlst(fname)
   myprint(lst,flag)
 ###    
@@ -136,7 +104,6 @@ def main():
 
   option = sys.argv[1]
   filename = sys.argv[2]
-  print filename
   if option == '--count':
     print_words(filename)
   elif option == '--topcount':
