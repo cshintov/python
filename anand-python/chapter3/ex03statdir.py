@@ -4,7 +4,6 @@
 import time
 import sys
 import os
-from ex02extcount import print_dict as pd
 
 def get_stat(_file):
   stat_list=[]
@@ -20,7 +19,7 @@ def dir_stat(_dir):
   stat_dict={}
   _files=os.listdir(_dir)
   for _file in _files:
-    stat_dict[_file]=get_stat(_file)
+    stat_dict[_file]=get_stat(_dir+'/'+_file)
   return stat_dict
 
 def print_dict(stat_dict):
@@ -33,7 +32,7 @@ def main():
     _dir=sys.argv[1]
     
   else:
-    print "usage: python exn.py [argument list]"
+    print "usage: python ex03statdir.py directory"
     sys.exit(1)
   print "the result:\n"
   print_dict(dir_stat(_dir))
