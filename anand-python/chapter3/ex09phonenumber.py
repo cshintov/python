@@ -17,7 +17,7 @@ def main():
   if len(sys.argv) >=2:
     phonenum=sys.argv[1] #phonenumber given through the command line argument
   else:
-    print "usage: python module.py [numlist] "
+    print "usage: python ex09phonenumber.py [numlist] "
     sys.exit(1)  
   if validate(phonenum):
     print "This phone number is a valid phone number!"
