@@ -1,10 +1,12 @@
+#http://httpbin.org/get is the url input
+#It has 'origin': ip address as one of its key:value
 import sys
 import json
 import urllib as web
-#comment ur function here
+#returns the ip address of the system
 def myip(url):
-  response=web.urlopen(url).read() #response=string containg 'origin': ip address
-  result=json.loads(response)['origin']# jason.loads() encodes the  response string to json object
+  response=web.urlopen(url) #response=the response from the url 
+  result=json.load(response)['origin']# jason.loads() encodes the  response to json object
   return result
 
 #This is the main function
