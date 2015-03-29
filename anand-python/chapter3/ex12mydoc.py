@@ -5,24 +5,7 @@ import os
 import sys
 import inspect
 
-#comment ur function here
-'''def mydoc(module):
-  mod=__import__(module)
-  help=mod.__doc__
-  #print help
-  item_list=dir(mod)
-  #print item_list
-  print "-------------------"
-  print "help:", help
-  print "itemlist(dir(module)):", item_list
-  for item in item_list:
-    item=__import__(module+'.'+item)
-    if inspect.isfunction(item):
-      help+=item.__doc__
-    else: 
-      print "Not a function! :",type(module+'.'+item)
-  return help
-'''
+#Creates the help string using __doc__ method
 def mydoc(module):
   help="Help on module %s :\nDESCRIPTION\n" % module
   mod=__import__(module)
@@ -38,7 +21,7 @@ def mydoc(module):
       except:
         print item[0]+" Doesn't have a help string!"
   return help
-
+#Calls mydoc (module) to get the help string of the entire module and consisting functions
 def help_file(module):
   help=mydoc(module)
   cmd='>'+module+'.help'
@@ -51,7 +34,7 @@ def help_file(module):
 #This is the main function
 def main():
   if len(sys.argv) ==2:
-    module=sys.argv[1] #The module to get help of
+    module=sys.argv[1] #the input module name
   else:
     print "usage: python ex12mydoc.py module "
     sys.exit(1)  
