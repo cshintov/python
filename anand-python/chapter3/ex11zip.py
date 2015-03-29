@@ -26,8 +26,11 @@ def myzip(zipname,files):
       zobj.write(_file,compress_type=compression)
     except:
       print "The %s file doesn't exist" % (_file)
-  print zobj.printdir()
   zobj.close()  
+  zj = zf.ZipFile(zipname, "r")
+  for info in zj.infolist():
+    print info.filename, info.date_time, info.file_size, info.compress_size
+  zj.close()  
   return
 
 #This is the main function
