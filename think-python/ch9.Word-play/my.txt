@@ -1,3 +1,11 @@
+aabbcc
+aabdc 
+caabbff 
+fbbbccdd 
+abcd
+xyz
+hij
+pyz
 shinto
 shanto
 sheela
@@ -6,3 +14,5 @@ mary
 biju
 bindu
 samuel
+ahz
+adbk
