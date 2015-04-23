@@ -27,7 +27,7 @@ def repeat():
     if not choice in ('n','no'):
       tup = create_tuple()
       print 'the tuple:\n',tup
-    print 'sum of 1,2,3 : ',sumall(1,2,3)
+    print 'sum of {} is {} '.format( tup, sumall(*tup) )
     prompt="continue? y:yes / n:no:"
     string=raw_input(prompt)
     if string=='n': 

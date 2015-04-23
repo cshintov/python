@@ -13,6 +13,7 @@ def build_dict(filename):
     wdict[word] = word
   return wdict
   
+#computes teh children list of  a word ; where a child is one letter deleted from the word
 def children(word):
   child_list = []
   for index in range(len(word)-1):
@@ -24,7 +25,9 @@ def children(word):
   if child in wdict:
       child_list.append(child)
   return child_list
-
+#returns True if the word is reducible , else false
+#a word is reducible if any of its children is reducible
+#a word is reducible if deleteing any letter in each step gives another word in teh dictionary
 d={}
 def is_reducible(word):
   if word in lreducible or word in ('a','i') : return True
@@ -35,14 +38,14 @@ def is_reducible(word):
       return True
   
   return False
-
+#computes teh list of all reducible words in the dictionary(word_list dict)
 def reducible(wdict):
   result = []
   for word in wdict:
     if is_reducible(word):
       result.append(word)
   return result
-
+#computes the largest reducible word in the list
 def largest(llist):
   large=''
   for item in llist:
@@ -55,8 +58,8 @@ def repeat():
     global wdict,lreducible
     wdict = {}
     lreducible = []
-    filename=raw_input("Enter the filename:")
-    wdict=build_dict(filename)
+    filename = raw_input("Enter the filename:")
+    wdict = build_dict(filename)
     llist = reducible(wdict)
     result = largest(llist)
     print 'largest reducible word:',result

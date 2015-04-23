@@ -1,10 +1,15 @@
-'''exercise 12.4 anagrams  in a file
-a. print them sorted in descending order 
-b. find the set of 8 letters which has most possible anagrams in the english language'''
+'''exercise 12.4 finds list of anagrams of a word  in a file
+a. prints them sorted in descending order of number of anagrams of character set
+b. finds the set of 8 letters which has most possible anagrams in the english language'''
 
-def is_anagram(worda,wordb):
-  for char in worda:
-    if worda.count(char) !=  wordb.count(char) or worda == wordb:
+#returns True if the given words are anagrams
+def is_anagram(word_a,word_b):
+  if len(word_a) != len(word_b):
+    return False
+  if word_a == word_b:
+    return False
+  for char in word_a:
+    if word_a.count(char) != word_a.count(char):
       return False
   return True
 
@@ -18,7 +23,7 @@ def signature(word):
   charset.sort()
   return ''.join(charset)
   
-#solution from the tutorial
+#solution from the tutorial(my solution in ex4a_anagrams takes very long time to compute)
 def anagrams(filename):
   words = build_list(filename)
   angm_dict = {}
@@ -28,7 +33,6 @@ def anagrams(filename):
       angm_dict[sig] = [word]
     else :
       angm_dict[sig].append(word)
-  #print 'dict',angm_dict
   return angm_dict    
 
 def print_result(result):
@@ -67,7 +71,7 @@ def repeat():
     if raw_input("continue?yes/no:") in ('n','no'):
       print "Bye!"
       break
-
+  
 def main(): 
   repeat()
 
