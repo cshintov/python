@@ -1,35 +1,37 @@
+'''
+Problem 1: Write an iterator class reverse_iter, that takes a list and iterates it from the reverse direction. ::
+'''
 import sys
-class zrange:
-  def __init__(self,n):
-    self.value=n
+import os
+class reverse:
+  def __init__(self,_list):
+    self._list=_list
   def __iter__(self):
-    return reverse_iter(self.value)
+    return reverse_iter(self._list)
     
 class reverse_iter:
-  def __init__(self,n):
-    #print "In the iterator"
-    self.cur=n
-    self.val=0
+  def __init__(self,_list):
+    self._list=_list
+    self.current = len(_list)
+    self.end = 0
   def __iter__(self):
     return self
   def next(self):
-    if self.cur > self.val:
-      temp=self.cur
-      self.cur -= 1
-      return temp
+    if self.current > self.end :
+      self.current -= 1
+      return self._list[self.current]
     else:
       raise StopIteration()
   
-
-#If both iteratable and iterator are the same object, it is consumed in a single iteration.
-print "Both iteratable and iterator are the same object"
-x=reverse_iter(int(sys.argv[1]))
-print list(x)
-print list(x) #will print empty list, since x consumed once
-
-#If iteratable and iterator are not the same object, the iterator object can be used many times
-print "Using different iterable and iterator"
-x=zrange(int(sys.argv[1]))
-print list(x)
-print list(x) #will print list as earlier , no empty list
-
+def main():
+  result = reverse(['shinto','shanto','varghese','sheela'])
+  print "the result:",list(result)
+  print "Calling second time:"
+  print "the result:",list(result)
+  print "Calling third time:"
+  print "the result:",list(result)
+	
+if __name__=='__main__':
+  print '*'*30,'\n'
+  main()
+  print '\n','*'*30
