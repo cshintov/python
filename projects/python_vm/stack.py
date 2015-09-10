@@ -1,5 +1,6 @@
 """ class for the stack """
 
+
 class Stack(object):
     """ class implementing stack """
     def __init__(self):
