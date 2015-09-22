@@ -3,13 +3,14 @@
 from sys import argv
 from histogram import histogram, inv_dict, most_freq, sort_dct
 from utils import ununicode, unescape, parser, get_hashtags, \
-            get_mentions, get_tweets
+            get_mentions, get_tweets, get_tweet
 
 def print_tweets(tweets):
     """ prints the tweets from tweets: list of tweet dicts """
     print
     for tweet in tweets:
-        text = tweet['text'].encode('unicode-escape')
+        text = get_tweet(tweet)
+        text = text.encode('unicode-escape')
         text = ununicode(text)
         text = unescape(text)
         print parser(text)
@@ -27,7 +28,7 @@ def print_stats(stat_lst, count=2):
 
         idx = 0
         for dummy_ in range(count):
-            print stat_lst[idx][0],  stat_lst[idx][1], 'times'
+            print stat_lst[idx][0],  stat_lst[idx][1]
             idx += 1
     print
 
@@ -54,6 +55,7 @@ def main():
         return
     scr_name, twt_count, stat_count = argv[1], int(argv[2]), int(argv[3])
     tweets = get_tweets(scr_name, twt_count)
+    print len(tweets)
     print_tweets(tweets)
     view_stats(tweets, stat_count)
     

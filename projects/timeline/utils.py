@@ -26,16 +26,44 @@ def unescape(text):
     return text
 
 
+def find_max_id(tweets):
+    """ 
+    find the min id from the tweets in order to pass as the max_id
+    to the  next request 
+    tweets: list of dicts 
+    """
+    min_twt = lambda twt1, twt2: twt1 if twt1['id'] < twt2['id'] \
+                                        else twt2
+    bot_twt = reduce(min_twt, tweets)
+    return bot_twt['id']
+
+
 def get_tweets(scr_name, twt_count=5):
     """ prints the time line of the scr_name screen name """
     auth = OAuth1(APP_KEY, APP_SECRET)
     url = "https://api.twitter.com/1.1/statuses/user_timeline.json"
     params = {'screen_name': scr_name, 'count': twt_count}
 
-    r = requests.get(url, params=params, auth=auth)
-    r.raise_for_status() #raises bad_request error if occurred
-    rjson = r.json()
-    return rjson
+    resp = requests.get(url, params=params, auth=auth)
+    resp.raise_for_status() #raises bad_request error if occurred
+    tweets = resp.json()
+    if twt_count <= 200:
+        return tweets
+    
+    rest = twt_count - len(tweets)
+    max_id = find_max_id(tweets) - 1
+    while True:
+        params = {'screen_name': scr_name, 'count': rest, 'max_id': max_id}
+        resp = requests.get(url, params=params, auth=auth)
+        resp.raise_for_status()
+        new_twts = resp.json()
+        tweets.extend(new_twts)
+        if len(new_twts) < 100 or len(tweets) == twt_count:
+            break
+        max_id = find_max_id(tweets) - 1
+        rest = twt_count - len(tweets)
+
+    return tweets
 
 
 def print_tweets(tweets):
@@ -61,6 +89,27 @@ def get_mentions(tweets):
     for tweet in tweets:
         for mention in tweet['entities']['user_mentions']:
             yield mention['screen_name']
+
+
+
+def is_retweet(text):
+    """ checks whether a tweet is a retweet """
+    rtwt = r'^RT @'
+    if re.search(rtwt, text):
+        return True
+    else:
+        return False
+
+
+def get_tweet(tweet):
+    """ gets the tweet text from the tweet dict """
+    text = tweet['text']
+    if is_retweet(text):
+        try:
+            text = tweet['retweeted_status']['text']
+        except:
+            pass
+    return text
 
 
 if  __name__ == '__main__':
