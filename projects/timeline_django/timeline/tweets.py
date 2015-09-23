@@ -10,10 +10,10 @@ def extract_tweets(tweets):
     tweet_texts = []
     for tweet in tweets:
         text = get_tweet(tweet)
-        text = text.encode('unicode-escape')
-        text = ununicode(text)
-        text = unescape(text)
-        tweet_texts.append(parser(text))
+        #text = text.encode('unicode-escape')
+        #text = ununicode(text)
+        #text = unescape(text)
+        tweet_texts.append(text)
     return tweet_texts
 
 def print_stats(stat_lst, count=2):
