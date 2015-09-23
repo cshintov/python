@@ -1,0 +1,12 @@
+<h1>Enter the details<h1>
+
+<form action="{% url 'timeline:show_tweets' %}" method="post">
+{% csrf_token %}
+    <p>twitter screen name</p>
+    <input type="text" name="screen_name">
+    <p>number of tweets to display</p>
+    <input type="text" name="tweet_count">
+    <p>number of stats to display</p>
+    <input type="text" name="stat_count">
+    <p><input type="submit" value="Get_timeline" /></p>
+</form>

@@ -1,0 +1,32 @@
+<h1> TimeLine </h1>
+{% if tweets%}
+    <ol>
+    {% for tweet in tweets %}
+        <li>{{tweet}}</li><br>
+    {% endfor %}
+    </ol>
+{% else %}
+    <p>No result are available.</p>
+{% endif %}
+
+<h1> Most used hashtags</h1>
+{% if hash_tags%}
+    <ol>
+    {% for hash_tag in hash_tags%}
+        <li>{{hash_tag.0}} {{hash_tag.1}} times</li>
+    {% endfor %}
+    </ol>
+{% else %}
+    <p>No hashtags used!.</p>
+{% endif %}
+
+<h1> Most mentioned users </h1>
+{% if mentions%}
+    <ol>
+    {% for mention in mentions %}
+        <li>{{mention.0}} {{mention.1}} times</li>
+    {% endfor %}
+    </ol>
+{% else %}
+    <p>No user mentions!.</p>
+{% endif %}

@@ -1,0 +1,9 @@
+{% if numbers %}
+    <ul>
+    {% for number in numbers %}
+        <li><a href="/add/result/">{{ number }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
