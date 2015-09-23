@@ -34,6 +34,9 @@ def find_max_id(tweets):
     """
     min_twt = lambda twt1, twt2: twt1 if twt1['id'] < twt2['id'] \
                                         else twt2
+
+    if len(min_twt) == 0:
+        return 1
     bot_twt = reduce(min_twt, tweets)
     return bot_twt['id']
 

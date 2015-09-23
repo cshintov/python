@@ -36,7 +36,6 @@ def print_stats(stat_lst, count=2):
 
 def get_stats(tweets, count=2):
     """ prints stats about hashtags and user mentions """
-    print 'Statistics\n-----------------------'
     hashtags = get_hashtags(tweets)
     mentions = get_mentions(tweets)
     
